@@ -1,6 +1,6 @@
 # pattern-recognition
 
-Lab work from my Pattern Recognition course at UNAM
+Pattern Recognition course lab assignments.
 
 
 ## Ejecución
