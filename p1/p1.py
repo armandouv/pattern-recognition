@@ -6,6 +6,11 @@ import seaborn
 
 
 df = pd.read_csv("iris.data", header=None)
+#Ejercicio 3.1
+print(df.describe())
+print(df.dtypes)
+print(df.head(10))
+
 print("llaves:", df.keys(), "\nNumero de renglones:", len(df), "\nNumero de columnas:", len(df.columns))
 
 print("\nNumero de Nan:", df.isnull().sum().sum())

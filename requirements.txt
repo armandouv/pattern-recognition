@@ -5,3 +5,5 @@ imageio
 opencv-python
 scikit-image
 pydicom
+pandas
+seaborn
