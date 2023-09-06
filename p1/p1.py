@@ -50,7 +50,9 @@ iris_vers = len(df.loc['Iris-versicolor'])
 iris_virg = len(df.loc['Iris-virginica'])
 sizes =[iris_set, iris_vers, iris_virg]
 
+df = df.dropna();
 values = df.values.min(), df.values.max(), df.values.mean()
+
 fig, ax = plt.subplots()
 langs = ['min', 'max', 'mean']
 ax.bar(langs, values)
