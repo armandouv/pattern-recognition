@@ -28,10 +28,10 @@ def calcular_probabilidad_posteriori(pixel, media, covarianza):
 
 # Cargar imágenes de entrenamiento para cada clase y preprocesarlas
 imagenes_entrenamiento = {
-    'Platano': cv2.imread('p2/platano.jpg', cv2.IMREAD_COLOR),
-    'Huevo': cv2.imread('p2/huevo.jpg', cv2.IMREAD_COLOR),
-    'Chile': cv2.imread('p2/chile.jpg', cv2.IMREAD_COLOR),
-    'Fondo': cv2.imread('p2/fondo.jpg', cv2.IMREAD_COLOR)
+    'Platano': cv2.imread('./platano.jpg', cv2.IMREAD_COLOR),
+    'Huevo': cv2.imread('./huevo.jpg', cv2.IMREAD_COLOR),
+    'Chile': cv2.imread('./chile.jpg', cv2.IMREAD_COLOR),
+    'Fondo': cv2.imread('./fondo.jpg', cv2.IMREAD_COLOR)
 }
 vectores_rgb = {}
 
@@ -85,7 +85,7 @@ for clase in imagenes_entrenamiento.keys():
     print(f'Covarianza de la clase {clase}:\n{covarianza}')
 
 # Nombres de las imágenes de prueba
-imagenes_prueba = ['p2/Prueba1.jpg', 'p2/Prueba2.jpg', 'p2/Prueba3.jpg']
+imagenes_prueba = ['./Prueba1.jpg', './Prueba2.jpg', './Prueba3.jpg']
 
 for imagen_prueba_nombre in imagenes_prueba:
     # Cargar la imagen de prueba y preprocesarla
@@ -124,11 +124,7 @@ for imagen_prueba_nombre in imagenes_prueba:
                 clasificacion_imagen[i, j] = 0
 
     # Guardar la imagen clasificada
-    cv2.imwrite(f'p2/resultados/Imagen_Clasificada_{imagen_prueba_nombre[3:]}', clasificacion_imagen)
-
-
-# PRUEBA SCIKIT LEARN
-
+    cv2.imwrite(f'./resultados/Imagen_Clasificada_{imagen_prueba_nombre[2:]}', clasificacion_imagen)
 
 # Cerrar todas las ventanas
 cv2.destroyAllWindows()

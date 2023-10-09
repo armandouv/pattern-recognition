@@ -5,10 +5,10 @@ from sklearn.naive_bayes import GaussianNB
 
 # Cargar imágenes de entrenamiento para cada clase y preprocesarlas
 imagenes_entrenamiento = {
-    'Platano': cv2.imread('p2/platano.jpg', cv2.IMREAD_COLOR),
-    'Huevo': cv2.imread('p2/huevo.jpg', cv2.IMREAD_COLOR),
-    'Chile': cv2.imread('p2/chile.jpg', cv2.IMREAD_COLOR),
-    'Fondo': cv2.imread('p2/fondo.jpg', cv2.IMREAD_COLOR)
+    'Platano': cv2.imread('./platano.jpg', cv2.IMREAD_COLOR),
+    'Huevo': cv2.imread('./huevo.jpg', cv2.IMREAD_COLOR),
+    'Chile': cv2.imread('./chile.jpg', cv2.IMREAD_COLOR),
+    'Fondo': cv2.imread('./fondo.jpg', cv2.IMREAD_COLOR)
 }
 vectores_rgb = {}
 etiquetas = []
@@ -55,12 +55,13 @@ etiquetas_numericas = np.zeros(len(etiquetas))
 for i, clase in enumerate(imagenes_entrenamiento.keys()):
     etiquetas_numericas[np.array(etiquetas) == clase] = i
 
+
 # Crear y entrenar el clasificador de Bayes de Scikit-Learn
 clasificador = GaussianNB()
 clasificador.fit(np.vstack(list(vectores_rgb.values())), etiquetas_numericas)
 
 # Nombres de las imágenes de prueba
-imagenes_prueba = ['p2/Prueba1.jpg', 'p2/Prueba2.jpg', 'p2/Prueba3.jpg']
+imagenes_prueba = ['./Prueba1.jpg', './Prueba2.jpg', './Prueba3.jpg']
 
 for imagen_prueba_nombre in imagenes_prueba:
     # Cargar la imagen de prueba y preprocesarla
@@ -80,23 +81,19 @@ for imagen_prueba_nombre in imagenes_prueba:
             pixel = imagen_prueba_rgb[i, j]
 
             # Calcular las probabilidades a posteriori para cada clase
-            probabilidades_posteriori = clasificador.predict_proba([pixel.reshape(-1)])
-
-            # Asignar la clase con la probabilidad más alta al píxel
-            clase_asignada = clasificador.classes_[np.argmax(probabilidades_posteriori)]
-
+            clase_asignada = clasificador.predict([pixel.reshape(-1)])
+            
             # Asignar un valor de color diferente a cada clase
-            if clase_asignada == 'Platano':
+            if clase_asignada == 0:
                 clasificacion_imagen[i, j] = 128
-            elif clase_asignada == 'Huevo':
+            elif clase_asignada == 1:
                 clasificacion_imagen[i, j] = 64
-            elif clase_asignada == 'Chile':
+            elif clase_asignada == 2:
                 clasificacion_imagen[i, j] = 32
             else:
                 clasificacion_imagen[i, j] = 0
 
-    # Mostrar la imagen clasificada
-    plt.imshow(clasificacion_imagen, cmap='gray')
-    plt.title(f'Imagen Clasificada: {imagen_prueba_nombre}')
-    plt.axis('off')
-    plt.show()
+    cv2.imwrite(f'./resultados/Imagen_Clasificada_Scikit_{imagen_prueba_nombre[2:]}', clasificacion_imagen)
+
+cv2.destroyAllWindows()
+
