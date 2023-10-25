@@ -2,7 +2,7 @@ import cv2
 import os
 
 # Ruta de la imagen de entrada
-input_image_path = 'p3/entrenamiento/n0110.jpg'
+input_image_path = 'p3/prueba/n0110.jpg'
 
 # Directorio de salida para las ventanas
 output_directory = 'p3/entrenamiento/ventanas'
@@ -10,7 +10,7 @@ if not os.path.exists(output_directory):
     os.mkdir(output_directory)
 
 # Tamaño de las ventanas cuadradas
-window_size = 32
+window_size = 8
 
 # Número deseado de ventanas
 num_windows = 100
